@@ -1,4 +1,4 @@
-## 0.1.0.pre3 (2011-12-13)
+## 0.1.0 (2011-12-13)
 
 * The `authenticate` method returns `self` instead of `true`
 
