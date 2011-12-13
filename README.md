@@ -43,7 +43,7 @@ Usage
 Requirements
 ------------
 
-* Ruby on Rails 3.1
+* Ruby on Rails 3.1 or higher
 
 Remarks
 -------
