@@ -6,6 +6,12 @@ module MiniAuth
   
   included do
     attr_accessor :password
+
+    if respond_to?(:attributes_protected_by_default)
+      def self.attributes_protected_by_default
+        super + [ 'password_digest' ]
+      end
+    end
     
     validate do
       if password && password.blank?
@@ -16,6 +22,7 @@ module MiniAuth
     before_save do
       if password
         self.password_digest = BCrypt::Password.create(password)
+        self.password = nil
       end
     end
   end

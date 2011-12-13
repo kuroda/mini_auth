@@ -11,6 +11,7 @@ ActiveRecord::Base.logger = Logger.new('/dev/null')
 class CreateAllTables < ActiveRecord::Migration
   def change
     create_table(:users) { |t| t.string :name; t.string :password_digest }
+    create_table(:administrators) { |t| t.string :name; t.string :password_digest, :null => false }
   end
 end
 
@@ -22,4 +23,12 @@ migration.change
 # Models
 class User < ActiveRecord::Base
   include MiniAuth
+end
+
+class Administrator < ActiveRecord::Base
+  attr_accessible :name, :password, :password_confirmation
+  
+  include MiniAuth
+  
+  validates :password, :presence => { :on => :create }, :confirmation => true
 end
