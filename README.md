@@ -1,7 +1,7 @@
 mini_auth
 =========
 
-A minimal authentication module for Rails
+A replacement for `has_secure_password` of ActiveModel
 
 Install
 -------
@@ -39,6 +39,11 @@ Usage
     a.password_digest                   # => "$2a$10$F5YbEd..."
     a.authenticate("hotyoga)            # => a
     a.authenticate("wrong")             # => false
+
+Requirements
+------------
+
+* Ruby on Rails 3.1
 
 Remarks
 -------
