@@ -1,14 +1,11 @@
-# Create a rails app
-# module Fake
-  # class Application < Rails::Application
-  # end
-# end
-
 # Establish connection to the database running on memory
 ActiveRecord::Base.establish_connection(
   :adapter  => "sqlite3",
   :database => ":memory:"
 )
+
+# Discard ActiveRecord's log
+ActiveRecord::Base.logger = Logger.new('/dev/null')
 
 # Define migration class
 class CreateAllTables < ActiveRecord::Migration

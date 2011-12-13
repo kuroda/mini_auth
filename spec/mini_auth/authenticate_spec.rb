@@ -7,12 +7,10 @@ describe "authenticate" do
     u = User.new(:name => 'alice', :password => 'hotyoga')
     u.save!
     
-    u.authenticate('hot_yoga').should be_true
+    u.authenticate('hotyoga').should be_true
   end
   
   it "should not authenticate with a wrong password" do
-    pending("Not yet implemented")
-    
     u = User.new(:name => 'alice', :password => 'hotyoga')
     u.save!
     
