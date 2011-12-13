@@ -1,3 +1,7 @@
+## 0.1.0.beta (2011-12-13)
+
+* The `authenticate` method returns `self` instead of `true`
+
 ## 0.1.0.pre2 (2011-12-13)
 
 * The `password_digest` field is protected against mass-assignment

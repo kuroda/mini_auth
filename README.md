@@ -37,7 +37,7 @@ Usage
     
     a.save                              # => true
     a.password_digest                   # => "$2a$10$F5YbEd..."
-    a.authenticate("hotyoga)            # => true
+    a.authenticate("hotyoga)            # => a
     a.authenticate("wrong")             # => false
 
 Remarks
