@@ -56,12 +56,12 @@ But, password can be nil.
     b.password = nil
     b.valid?                            # => true
 
-You can save a user whose password_digest is null.
+You can save a user whose `password_digest` is nil.
 
     b.save!
     b.password_digest                   # => nil
 
-Such a user can not be authenticated.
+Such a user can't get authenticated.
 
     b.authenticate(nil)                 # => false
 
