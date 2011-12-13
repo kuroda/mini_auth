@@ -1,8 +1,8 @@
 # Create a rails app
-module MiniAuth
-  class Application < Rails::Application
-  end
-end
+# module Fake
+  # class Application < Rails::Application
+  # end
+# end
 
 # Establish connection to the database running on memory
 ActiveRecord::Base.establish_connection(
@@ -24,4 +24,5 @@ migration.change
 
 # Models
 class User < ActiveRecord::Base
+  include MiniAuth
 end

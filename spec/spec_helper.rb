@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] = "test"
 
 require "rails/all"
 require "rspec/rails"
+require "mini_auth"
 
 # Pull in the fake rails app
 require 'fake_app'
