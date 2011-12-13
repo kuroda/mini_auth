@@ -38,24 +38,46 @@ Usage
     a.save                              # => true
     a.password_digest                   # => "$2a$10$F5YbEd..."
     a.authenticate("hotyoga)            # => true
-    
-    a.update_attributes :name => "Alice"
-    a.authenticate("hotyoga")           # => true
-    
+    a.authenticate("wrong")             # => false
+
+Remarks
+-------
+
+Password can't be blank.
+
     b = User.new(:name => "bob")
     
     b.password = ""
     b.valid?                            # => false
     b.errors[:password]                 # => "can't be blank"
 
+But, password can be nil.
+
     b.password = nil
     b.valid?                            # => true
+
+You can save a user whose password_digest is null.
+
     b.save!
     b.password_digest                   # => nil
+
+Such a user can not be authenticated.
+
     b.authenticate(nil)                 # => false
+
+The `password_digest` field is protected against mass assignment.
 
     b.update_attributes :password_digest => 'dummy'
     b.password_digest                   # => nil (unchanged)
+
+The `password_confirmation` field is not created automatically. If you need it, add it for yourself.
+
+    class User < ActiveRecord::Base
+      include MiniAuth
+      
+      attr_accessor :password_confirmation
+      validates :password, :confirmation => true
+    end
 
 License
 -------
