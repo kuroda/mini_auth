@@ -56,3 +56,13 @@ Usage
 
     b.update_attributes :password_digest => 'dummy'
     b.password_digest                   # => nil (unchanged)
+
+License
+-------
+
+`mini_auth` is distributed under the MIT license. ([MIT-LICENSE](https://github.com/kuroda/mini_auth/blob/master/MIT-LICENSE))
+
+Copyright
+---------
+
+Copyright (c) 2011 Tsutomu Kuroda.
