@@ -5,7 +5,7 @@ describe "authenticate" do
     u = User.new(:name => 'alice', :password => 'hotyoga')
     u.save!
     
-    u.authenticate('hotyoga').should be_true
+    u.authenticate('hotyoga').should == u
   end
   
   it "should not authenticate with a wrong password" do

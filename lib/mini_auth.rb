@@ -28,6 +28,10 @@ module MiniAuth
   end
   
   def authenticate(password)
-    password_digest && BCrypt::Password.new(password_digest) == password
+    if password_digest && BCrypt::Password.new(password_digest) == password
+      self
+    else
+      false
+    end
   end
 end
