@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'spec_helper'
 
 describe "authenticate" do
@@ -15,5 +13,12 @@ describe "authenticate" do
     u.save!
     
     u.authenticate('wrong').should be_false
+  end
+  
+  it "should not authenticate with ni; password" do
+    u = User.new(:name => 'alice', :password => nil)
+    u.save!
+    
+    u.authenticate(nil).should be_false
   end
 end
