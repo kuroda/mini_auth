@@ -5,7 +5,7 @@ module MiniAuth
   extend ActiveSupport::Concern
   
   included do
-    attr_accessor :password
+    attr_accessor :password, :changing_password, :old_password
 
     if respond_to?(:attributes_protected_by_default)
       def self.attributes_protected_by_default
@@ -14,8 +14,18 @@ module MiniAuth
     end
     
     validate do
-      if password && password.blank?
-        errors.add(:password, :blank)
+      if changing_password?
+        unless authenticate(old_password)
+          errors.add(:old_password, :invalid)
+        end
+        
+        if password.blank?
+          errors.add(:password, :blank)
+        end
+      else
+        if password && password.blank?
+          errors.add(:password, :blank)
+        end
       end
     end
     
@@ -33,5 +43,9 @@ module MiniAuth
     else
       false
     end
+  end
+  
+  def changing_password?
+    !!@changing_password
   end
 end
