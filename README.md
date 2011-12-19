@@ -199,7 +199,7 @@ You don't have to use them, however.
 
 ### Mass assignment security
 
-The `password_digest` column is protected against mass assignment.
+The `password_digest` column is protected against _mass assignment_.
 
     c.update_attributes(:password_digest => 'dummy')
     c.password_digest                   # => nil (unchanged)
@@ -210,7 +210,7 @@ Similarly, the `setting_password` and `changing_password` attributes are protect
     c.setting_password?                 # => false
 
 A class that includes `Miniauth` is forced to adopt the _whitelist-principle_ regarding the mass assignment protection.
-That is, you have to enumerate the names of attributes that can be set via a hash by the `att_accessible` method.
+That is, you have to enumerate the names of attributes that can be set via a hash by the `attr_accessible` method.
 
     class User < ActiveRecord::Base
       include MiniAuth
@@ -218,6 +218,20 @@ That is, you have to enumerate the names of attributes that can be set via a has
       attr_accessible :name, :address, :phone
     end
 
+Note that the attributes `password`, `password_confirmation`, `current_password`, `new_password`, and
+`new_password_confirmation` are included in the whitelist by default.
+
+If your class has a _role_ such as :admin, you should enumerate the accessible attributes as follows:
+
+    class User < ActiveRecord::Base
+      include MiniAuth
+      
+      attr_accessible :name, :address, :phone
+      attr_accessible *(accessible_attributes(:default) + [ :is_admin ]), :as => :admin
+    end
+
+For more information about mass assignment security, please refer to the 
+[Mass Assignment](http://guides.rubyonrails.org/security.html#mass-assignment) section of Rails Guides.
 
 License
 -------
