@@ -238,7 +238,7 @@ For more information about mass assignment security, please refer to the
 
 `MiniAuth` module provides an easy way to generate a random token and verify it. 
 
-The class method `use_token` takes a list of names and defines "generate_#{name}_token" and "verify_#{name}_token" methods dynamically.
+The class method `use_token` takes a list of names and defines "generate\_#{name}\_token" and "verify\_#{name}\_token" methods dynamically.
 
     class User < ActiveRecord::Base
       include MiniAuth
