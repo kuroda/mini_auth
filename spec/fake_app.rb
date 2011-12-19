@@ -24,11 +24,3 @@ migration.change
 class User < ActiveRecord::Base
   include MiniAuth
 end
-
-class Administrator < ActiveRecord::Base
-  attr_accessible :name, :password, :password_confirmation
-  
-  include MiniAuth
-  
-  validates :password, :presence => { :on => :create }, :confirmation => true
-end
