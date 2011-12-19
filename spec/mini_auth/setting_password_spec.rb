@@ -9,8 +9,23 @@ describe "setting_password" do
     u.authenticate('hotyoga').should be_true
   end
   
+  it "should update password" do
+    u = User.create!(:name => 'alice')
+    u.setting_password = true
+    u.update_attributes(:password => 'hotyoga')
+    u.authenticate('hotyoga').should be_true
+  end
+
   it "should reject blank password" do
     u = User.new(:name => 'alice', :password => '')
+    u.setting_password = true
+    u.should_not be_valid
+    u.should have(1).error_on(:password)
+    u.errors[:password].first.should == "can't be blank"
+  end
+
+  it "should reject nil password" do
+    u = User.new(:name => 'alice', :password => nil)
     u.setting_password = true
     u.should_not be_valid
     u.should have(1).error_on(:password)
