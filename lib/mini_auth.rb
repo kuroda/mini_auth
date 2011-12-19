@@ -59,7 +59,11 @@ module MiniAuth
       false
     end
   end
-  
+
+  def update_token(name)
+    self.send("#{name}_token=", SecureRandom.hex)
+  end
+
   def changing_password?
     !!changing_password
   end

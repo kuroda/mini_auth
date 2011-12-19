@@ -10,8 +10,11 @@ ActiveRecord::Base.logger = Logger.new('/dev/null')
 # Define migration class
 class CreateAllTables < ActiveRecord::Migration
   def change
-    create_table(:users) { |t| t.string :name; t.string :password_digest }
-    create_table(:administrators) { |t| t.string :name; t.string :password_digest, :null => false }
+    create_table(:users) do |t|
+      t.string :name
+      t.string :password_digest
+      t.string :auto_login_token
+    end
   end
 end
 
