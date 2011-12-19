@@ -106,7 +106,7 @@ Password can't be blank.
     b.valid?                            # => false
     b.errors[:password]                 # => "can't be blank"
 
-Password can be nil.
+Password can't be nil.
 
     b = User.new(:name => "bob", :password => nil)
     b.setting_password => true
