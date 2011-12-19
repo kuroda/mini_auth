@@ -5,7 +5,8 @@ module MiniAuth
   extend ActiveSupport::Concern
   
   included do
-    attr_accessor :password, :changing_password, :old_password
+    attr_accessor :password, :changing_password,
+      :current_password, :new_password
 
     if respond_to?(:attributes_protected_by_default)
       def self.attributes_protected_by_default
@@ -15,12 +16,12 @@ module MiniAuth
     
     validate do
       if changing_password?
-        unless authenticate(old_password)
-          errors.add(:old_password, :invalid)
+        unless authenticate(current_password)
+          errors.add(:current_password, :invalid)
         end
         
-        if password.blank?
-          errors.add(:password, :blank)
+        if new_password.blank?
+          errors.add(:new_password, :blank)
         end
       else
         if password && password.blank?
@@ -29,8 +30,10 @@ module MiniAuth
       end
     end
     
-    before_save do
-      if password
+    after_validation do
+      if changing_password?
+        self.password_digest = BCrypt::Password.create(new_password)
+      elsif password
         self.password_digest = BCrypt::Password.create(password)
         self.password = nil
       end
@@ -46,6 +49,6 @@ module MiniAuth
   end
   
   def changing_password?
-    !!@changing_password
+    !!changing_password
   end
 end
