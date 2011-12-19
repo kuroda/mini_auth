@@ -11,8 +11,6 @@ module MiniAuth
   ]
   
   included do
-    extend MiniAuth::ClassMethods
-    
     attr_accessor :changing_password, :setting_password
     attr_accessor *BASIC_ATTRIBUTES
     attr_accessible *BASIC_ATTRIBUTES
@@ -54,28 +52,30 @@ module MiniAuth
     end
   end
   
-  def authenticate(raw_password)
-    if password_digest && BCrypt::Password.new(password_digest) == raw_password
-      self
-    else
-      false
+  module InstanceMethods
+    def authenticate(raw_password)
+      if password_digest && BCrypt::Password.new(password_digest) == raw_password
+        self
+      else
+        false
+      end
     end
-  end
-
-  def generate_token(name)
-    self.send("#{name}_token=", SecureRandom.hex)
-  end
-
-  def verify_token(name, token)
-    token && token == self.send("#{name}_token")
-  end
-
-  def changing_password?
-    !!changing_password
-  end
   
-  def setting_password?
-    !!setting_password
+    def generate_token(name)
+      self.send("#{name}_token=", SecureRandom.hex)
+    end
+  
+    def verify_token(name, token)
+      token && token == self.send("#{name}_token")
+    end
+  
+    def changing_password?
+      !!changing_password
+    end
+    
+    def setting_password?
+      !!setting_password
+    end
   end
   
   module ClassMethods
