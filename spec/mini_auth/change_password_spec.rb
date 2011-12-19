@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe "change_password" do
   let(:user) do
-    u = User.create!(:name => 'alice', :new_password => 'password')
+    u = User.new(:name => 'alice', :password => 'password')
+    u.setting_password = true
+    u.save!
     u.changing_password = true
     u
   end
