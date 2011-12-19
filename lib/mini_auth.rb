@@ -62,7 +62,7 @@ module MiniAuth
     end
   end
 
-  def update_token(name)
+  def generate_token(name)
     self.send("#{name}_token=", SecureRandom.hex)
   end
 
@@ -82,8 +82,8 @@ module MiniAuth
     def use_token(*names)
       names.each do |name|
         self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
-          def update_#{name}_token
-            update_token(:#{name})
+          def generate_#{name}_token
+            generate_token(:#{name})
           end
         METHOD
         

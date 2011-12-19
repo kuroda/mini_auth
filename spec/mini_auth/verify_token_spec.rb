@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "verify_token" do
   let(:user) do
     u = User.create!(:name => 'alice')
-    u.update_token(:auto_login)
+    u.generate_token(:auto_login)
     u
   end
   
