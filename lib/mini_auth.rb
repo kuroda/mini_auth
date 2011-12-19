@@ -11,6 +11,8 @@ module MiniAuth
   ]
   
   included do
+    extend MiniAuth::ClassMethods
+    
     attr_accessor :changing_password, :setting_password
     attr_accessor *BASIC_ATTRIBUTES
     attr_accessible *BASIC_ATTRIBUTES
@@ -74,5 +76,23 @@ module MiniAuth
   
   def setting_password?
     !!setting_password
+  end
+  
+  module ClassMethods
+    def use_token(*names)
+      names.each do |name|
+        self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
+          def update_#{name}_token
+            update_token(:#{name})
+          end
+        METHOD
+        
+        self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
+          def verify_#{name}_token(token)
+            verify_token(:#{name}, token)
+          end
+        METHOD
+      end
+    end
   end
 end

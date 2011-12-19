@@ -14,6 +14,7 @@ class CreateAllTables < ActiveRecord::Migration
       t.string :name
       t.string :password_digest
       t.string :auto_login_token
+      t.string :mail_confirmation_token
     end
   end
 end
@@ -28,4 +29,5 @@ class User < ActiveRecord::Base
   include MiniAuth
   
   attr_accessible :name
+  use_token :auto_login, :mail_confirmation
 end
