@@ -64,6 +64,10 @@ module MiniAuth
     self.send("#{name}_token=", SecureRandom.hex)
   end
 
+  def verify_token(name, token)
+    token && token == self.send("#{name}_token")
+  end
+
   def changing_password?
     !!changing_password
   end
