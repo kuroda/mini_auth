@@ -23,4 +23,6 @@ migration.change
 # Models
 class User < ActiveRecord::Base
   include MiniAuth
+  
+  attr_accessible :name
 end

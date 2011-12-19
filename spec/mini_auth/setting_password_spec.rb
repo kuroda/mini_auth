@@ -6,7 +6,9 @@ describe "setting_password" do
     u.setting_password = true
     u.should be_valid
     u.save!
-    u.authenticate('hotyoga').should be_true
+    
+    v = User.find_by_name('alice')
+    v.authenticate('hotyoga').should be_true
   end
   
   it "should update password" do

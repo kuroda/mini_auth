@@ -39,6 +39,8 @@ Synopsis
     
     class User < ActiveRecord::Base
       include MiniAuth
+      
+      attr_accessible :name
     end
     
     a = User.new(:name => "alice", :password => "hotyoga")
@@ -46,14 +48,19 @@ Synopsis
     
     a.save                              # => true
     a.password_digest                   # => "$2a$10$F5YbEd..."
-    a.authenticate("hotyoga)            # => a
-    a.authenticate("wrong")             # => false
     
-    a.attributes = { :current_password => 'hotyoga', :new_password => 'almond' }
-    a.changing_password = true
-    a.save
-    a.authenticate("hotyoga)            # => false
-    a.authenticate("almond")            # => a
+    x = User.find_by_name("alice")
+    x.authenticate("wrong")             # => false
+    x.authenticate("hotyoga)            # => x
+    
+    x.attributes = { :current_password => 'hotyoga', :new_password => 'almond' }
+    x.changing_password = true
+    x.save
+    
+    y = User.find_by_name("alice")
+    y.authenticate("hotyoga)            # => false
+    y.authenticate("almond")            # => y
+
 
 Usage
 -----
@@ -201,6 +208,15 @@ Similarly, the `setting_password` and `changing_password` attributes are protect
 
     c.attributes = { :setting_password => true, :password => '0000' }
     c.setting_password?                 # => false
+
+A class that includes `Miniauth` is forced to adopt the _whitelist-principle_ regarding the mass assignment protection.
+That is, you have to enumerate the names of attributes that can be set via a hash by the `att_accessible` method.
+
+    class User < ActiveRecord::Base
+      include MiniAuth
+      
+      attr_accessible :name, :address, :phone
+    end
 
 
 License
