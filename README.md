@@ -233,6 +233,35 @@ If your class has a _role_ such as :admin, you should enumerate the accessible a
 For more information about mass assignment security, please refer to the 
 [Mass Assignment](http://guides.rubyonrails.org/security.html#mass-assignment) section of Rails Guides.
 
+
+### Random token
+
+`MiniAuth` module provides an easy way to generate a random token and verify it. 
+
+The class method `use_token` takes a list of names and defines "generate_#{name}_token" and "verify_#{name}_token" methods dynamically.
+
+    class User < ActiveRecord::Base
+      include MiniAuth
+      
+      attr_accessible :name, :address, :phone
+      use_token :auto_login, :mail_confirmation
+    end
+
+By calling `generate_auto_login_token`, you can generate a random hex string of 32 letters and set it to the `auto_login_token` column.
+
+    d = User.new(:name => "david")
+    d.generate_auto_login_token
+    d.auto_login_token                 # => "8d21d3830a3ef2aafe8a7c0388493883"
+
+Call `verify_auto_login_token` to verify it. For example, 
+
+    d.verify_auto_login_token(params[:token])
+
+returns `true` if `params[:token]` equals to the generated token. Otherwise it returns `false`.
+
+Note that `use_token` defines also two instance methods `generate_token` and `verify_token`, which are used internally.
+
+
 License
 -------
 
