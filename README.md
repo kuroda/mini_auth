@@ -89,7 +89,7 @@ When neither of them is set to `true`, you can NOT set or change the user's `pas
     a.valid?                            # => true
 
 
-### `setting_password` attribute
+### Setting password
 
 When the user's `setting_password` attribute is set to `true`, its password can
 be set without knowing the current password.
@@ -121,7 +121,7 @@ Password should be given.
     b.errors[:password]                 # => "can't be blank"
 
 
-### `changing_password` attribute
+### Changing password
 
 When the user's `changing_password` attribute is set to `true`, its password can
 NOT be set without knowing the current password. You should provide `current_password`
@@ -144,7 +144,7 @@ When both of the `setting_password` and the `changing_password` are set to `true
 only the latter is effective.
 
 
-### A user whose `password_digest` is nil
+### A user who has no password
 
 You can save a user whose `password_digest` is nil.
 
@@ -152,7 +152,7 @@ You can save a user whose `password_digest` is nil.
     c.save!
     c.password_digest                   # => nil
 
-Such a user can't get authenticated.
+Such a user can't get authenticated, but can exist as a temporary account or placeholder.
 
     c.authenticate(nil)                 # => false
 
