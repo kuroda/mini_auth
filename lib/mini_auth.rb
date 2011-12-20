@@ -52,22 +52,20 @@ module MiniAuth
     end
   end
   
-  module InstanceMethods
-    def authenticate(raw_password)
-      if password_digest && BCrypt::Password.new(password_digest) == raw_password
-        self
-      else
-        false
-      end
+  def authenticate(raw_password)
+    if password_digest && BCrypt::Password.new(password_digest) == raw_password
+      self
+    else
+      false
     end
+  end
+
+  def changing_password?
+    !!changing_password
+  end
   
-    def changing_password?
-      !!changing_password
-    end
-    
-    def setting_password?
-      !!setting_password
-    end
+  def setting_password?
+    !!setting_password
   end
   
   module ClassMethods
