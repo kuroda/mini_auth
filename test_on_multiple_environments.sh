@@ -13,13 +13,12 @@ fi
 function run {
   gem list --local bundler | grep bundler || gem install bundler --no-ri --no-rdoc
 
-  echo 'Running bundle exec rspec spec against rails 3.1.3...'
-  MINI_AUTH_RAILS_VERSION=3.1.3 bundle update rails
-  MINI_AUTH_RAILS_VERSION=3.1.3 bundle exec rspec spec
-
-  echo 'Running bundle exec rspec spec against rails 3.2.0.rc1...'
-  MINI_AUTH_RAILS_VERSION=3.2.0.rc1 bundle update rails
-  MINI_AUTH_RAILS_VERSION=3.2.0.rc1 bundle exec rspec spec
+  for version in 3.1.3 3.2.0.rc1
+  do
+    echo "Running bundle exec rspec spec against rails $version..."
+    MINI_AUTH_RAILS_VERSION=$version bundle update rails
+    MINI_AUTH_RAILS_VERSION=$version bundle exec rspec spec
+  done
 }
 
 rvm use ruby-1.8.7@mini_auth --create
