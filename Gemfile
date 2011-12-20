@@ -7,7 +7,7 @@ if rails_version == "edge"
 elsif rails_version && rails_version.strip != ""
   gem "rails", rails_version
 else
-  gem "rails", "~> 3.1.0"
+  gem "rails", ">= 3.1.0"
 end
 
 gem "bcrypt-ruby", "~> 3.0.0"
