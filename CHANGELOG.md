@@ -1,8 +1,6 @@
 ## 0.3.0
 
-* Add the instance method `generate_token`.
-* Add the instance method `verify_token`.
-* Add the class method `use_token` that defines "generate_#{name}_token" and
+* Add the class method `token` that defines "generate_#{name}_token" and
   "verify_#{name}_token" methods dynamically.  
 
 ## 0.2.0 (2011-12-19)

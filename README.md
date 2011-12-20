@@ -238,13 +238,13 @@ For more information about mass assignment security, please refer to the
 
 `MiniAuth` module provides an easy way to generate a random token and verify it. 
 
-The class method `use_token` takes a list of names and defines "generate\_#{name}\_token" and "verify\_#{name}\_token" methods dynamically.
+The class method `token` takes a list of names and defines "generate\_#{name}\_token" and "verify\_#{name}\_token" methods dynamically.
 
     class User < ActiveRecord::Base
       include MiniAuth
       
       attr_accessible :name, :address, :phone
-      use_token :auto_login, :mail_confirmation
+      token :auto_login, :mail_confirmation
     end
 
 By calling `generate_auto_login_token`, you can generate a random hex string of 32 letters and set it to the `auto_login_token` column.
@@ -258,8 +258,6 @@ Call `verify_auto_login_token` to verify it. For example,
     d.verify_auto_login_token(params[:token])
 
 returns `true` if `params[:token]` equals to the generated token. Otherwise it returns `false`.
-
-Note that `use_token` defines also two instance methods `generate_token` and `verify_token`, which are used internally.
 
 
 License
