@@ -15,11 +15,11 @@ function run {
 
   echo 'Running bundle exec rspec spec against rails 3.1.3...'
   MINI_AUTH_RAILS_VERSION=3.1.3 bundle update rails
-  bundle exec rspec spec
+  MINI_AUTH_RAILS_VERSION=3.1.3 bundle exec rspec spec
 
   echo 'Running bundle exec rspec spec against rails 3.2.0.rc1...'
   MINI_AUTH_RAILS_VERSION=3.2.0.rc1 bundle update rails
-  bundle exec rspec spec
+  MINI_AUTH_RAILS_VERSION=3.2.0.rc1 bundle exec rspec spec
 }
 
 rvm use ruby-1.8.7@mini_auth --create
