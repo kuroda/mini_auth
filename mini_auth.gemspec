@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "bcrypt-ruby"
   s.add_development_dependency "rspec-rails", "~> 2.7.0"
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "database_cleaner"
 end
