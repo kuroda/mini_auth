@@ -1,7 +1,8 @@
 ## 0.3.0
 
 * Add the class method `token` that defines "generate_#{name}_token" and
-  "verify_#{name}_token" methods dynamically.  
+  "verify_#{name}_token" methods dynamically.
+* Remove the deprecation warnings in Rails 3.2.0.rc1
 
 ## 0.2.0 (2011-12-19)
 

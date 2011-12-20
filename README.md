@@ -20,7 +20,7 @@ or install as a plugin
 Requirements
 ------------
 
-* Ruby on Rails 3.1 or higher
+* Ruby on Rails 3.1 or 3.2
 
 
 Synopsis
