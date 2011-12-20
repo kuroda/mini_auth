@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.name        = "mini_auth"
   s.version     = MiniAuth::VERSION
   s.authors     = ["Tsutomu Kuroda"]
-  s.email       = ["t-kuroda@oiax.jp"]
-  s.homepage    = ""
+  s.email       = ["hermes@oiax.jp"]
+  s.homepage    = "https://github.com/kuroda/mini_auth"
   s.summary     = %q{A minimal authentication module for Rails}
   s.description = %q{A minimal authentication module for Rails}
 
