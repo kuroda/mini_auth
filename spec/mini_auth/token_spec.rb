@@ -28,4 +28,8 @@ describe "MiniAuth.token" do
     
     user.verify_auto_login_token(user.auto_login_token).should be_true
   end
+  
+  it "should reject wrong token" do
+    user.verify_auto_login_token('z' * 32).should be_false
+  end
 end

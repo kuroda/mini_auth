@@ -61,14 +61,6 @@ module MiniAuth
       end
     end
   
-    def generate_token(name)
-      self.send("#{name}_token=", SecureRandom.hex)
-    end
-  
-    def verify_token(name, token)
-      token && token == self.send("#{name}_token")
-    end
-  
     def changing_password?
       !!changing_password
     end
@@ -83,13 +75,13 @@ module MiniAuth
       names.each do |name|
         self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
           def generate_#{name}_token
-            generate_token(:#{name})
+            send("#{name}_token=", SecureRandom.hex)
           end
         METHOD
         
         self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
           def verify_#{name}_token(token)
-            verify_token(:#{name}, token)
+            token && token == self.send("#{name}_token")
           end
         METHOD
       end
