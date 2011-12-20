@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "rails", "~> 3.1.0"
-  s.add_runtime_dependency "bcrypt-ruby"
+  s.add_runtime_dependency "bcrypt-ruby", "~> 3.0.0"
   s.add_development_dependency "rspec-rails", "~> 2.7.0"
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "database_cleaner"
+  s.add_development_dependency "sqlite3", "~> 1.3.4"
+  s.add_development_dependency "database_cleaner", "~> 0.7.0"
 end
