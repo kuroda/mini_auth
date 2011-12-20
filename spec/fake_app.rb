@@ -29,5 +29,5 @@ class User < ActiveRecord::Base
   include MiniAuth
   
   attr_accessible :name
-  use_token :auto_login, :mail_confirmation
+  token :auto_login, :mail_confirmation
 end

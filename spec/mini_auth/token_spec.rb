@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "use_token" do
+describe "MiniAuth.token" do
   let(:user) do
     User.create!(:name => 'alice')
   end

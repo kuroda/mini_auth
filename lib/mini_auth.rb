@@ -79,7 +79,7 @@ module MiniAuth
   end
   
   module ClassMethods
-    def use_token(*names)
+    def token(*names)
       names.each do |name|
         self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
           def generate_#{name}_token
