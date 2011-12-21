@@ -44,7 +44,7 @@ Synopsis
     end
     
     a = User.new(:name => "alice", :password => "hotyoga")
-    a.setting_password => true
+    a.setting_password = true
     
     a.save                              # => true
     a.password_digest                   # => "$2a$10$F5YbEd..."
