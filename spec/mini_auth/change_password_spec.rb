@@ -8,11 +8,17 @@ describe "change_password" do
     u.changing_password = true
     u
   end
-  
+
   it "should change password" do
     user.update_attributes(:current_password => 'password', :new_password => 'banana')
     
     user.authenticate('banana').should be_true
+  end
+
+  it "should unset changing_password flag afterwards" do
+    user.update_attributes(:current_password => 'password', :new_password => 'banana')
+    
+    user.changing_password.should be_false
   end
   
   it "should reject wrong current password" do

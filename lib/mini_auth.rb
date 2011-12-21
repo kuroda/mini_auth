@@ -49,6 +49,8 @@ module MiniAuth
     
     after_save do
       self.password = nil
+      self.changing_password = false
+      self.setting_password = false
     end
   end
   

@@ -10,12 +10,19 @@ describe "setting_password" do
     v = User.find_by_name('alice')
     v.authenticate('hotyoga').should be_true
   end
-  
+
   it "should update password" do
     u = User.create!(:name => 'alice')
     u.setting_password = true
     u.update_attributes(:password => 'hotyoga')
     u.authenticate('hotyoga').should be_true
+  end
+
+  it "should unset setting_password flag afterwards" do
+    u = User.create!(:name => 'alice')
+    u.setting_password = true
+    u.update_attributes(:password => 'hotyoga')
+    u.setting_password.should be_false
   end
 
   it "should reject blank password" do

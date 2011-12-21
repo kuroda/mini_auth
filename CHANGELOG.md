@@ -3,6 +3,7 @@
 * Add the class method `token` that defines "generate_#{name}_token" and
   "verify_#{name}_token" methods dynamically.
 * Remove the deprecation warnings in Rails 3.2.0.rc1
+* Unset `changing_password` and `setting_password` after the object is saved.
 
 ## 0.2.0 (2011-12-19)
 
