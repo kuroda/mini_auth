@@ -1,4 +1,4 @@
-## 0.3.0
+## 0.3.0 (2011-12-21)
 
 * Add the class method `token` that defines "generate_#{name}_token" and
   "verify_#{name}_token" methods dynamically.
