@@ -11,6 +11,15 @@ describe "setting_password" do
     v.authenticate('hotyoga').should be_true
   end
 
+  it "should set password even if the user is saved without validation" do
+    u = User.new(:name => 'alice', :password => 'hotyoga')
+    u.setting_password = true
+    u.save(:validate => false)
+
+    v = User.find_by_name('alice')
+    v.authenticate('hotyoga').should be_true
+  end
+
   it "should update password" do
     u = User.create!(:name => 'alice')
     u.setting_password = true

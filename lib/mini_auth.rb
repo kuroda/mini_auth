@@ -39,7 +39,7 @@ module MiniAuth
       end
     end
     
-    after_validation do
+    before_save do
       if changing_password?
         self.password_digest = BCrypt::Password.create(new_password)
       elsif setting_password?
