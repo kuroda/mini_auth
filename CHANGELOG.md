@@ -1,3 +1,6 @@
+## 0.3.1 (2012-07-18)
+* Set `password_digest` when the user is saved without validation.
+
 ## 0.3.0 (2011-12-21)
 
 * Add the class method `token` that defines "generate_#{name}_token" and
