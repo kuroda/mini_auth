@@ -16,6 +16,17 @@ class CreateAllTables < ActiveRecord::Migration
       t.string :auto_login_token
       t.string :mail_confirmation_token
     end
+
+    create_table(:members) do |t|
+      t.string :name
+      t.string :password_digest
+    end
+
+    create_table(:administrators) do |t|
+      t.string :name
+      t.string :password_digest
+      t.boolean :deleted
+    end
   end
 end
 
@@ -28,6 +39,15 @@ migration.change
 class User < ActiveRecord::Base
   include MiniAuth
   
-  attr_accessible :name
   token :auto_login, :mail_confirmation
+end
+
+class Member < ActiveRecord::Base
+  include MiniAuth
+  attr_accessible :name
+end
+
+class Administrator < ActiveRecord::Base
+  include MiniAuth
+  attr_protected :deleted
 end

@@ -1,3 +1,6 @@
+## 0.3.2 (2012-11-08)
+* Don't protect all columns from mass assignment by default.
+
 ## 0.3.1 (2012-07-18)
 * Set `password_digest` when the user is saved without validation.
 

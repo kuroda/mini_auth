@@ -13,15 +13,8 @@ module MiniAuth
   included do
     attr_accessor :changing_password, :setting_password
     attr_accessor *BASIC_ATTRIBUTES
-    attr_accessible *BASIC_ATTRIBUTES
     
     validates :password, :new_password, :confirmation => true
-
-    if respond_to?(:attributes_protected_by_default)
-      def self.attributes_protected_by_default
-        super + [ 'password_digest', 'changing_password', 'setting_password' ]
-      end
-    end
     
     validate do
       if changing_password?
@@ -85,6 +78,10 @@ module MiniAuth
           end
         METHOD
       end
+    end
+
+    def attributes_protected_by_default
+      super + [ 'password_digest', 'changing_password', 'setting_password' ]
     end
   end
 end

@@ -269,4 +269,4 @@ License
 Copyright
 ---------
 
-Copyright (c) 2011 Tsutomu Kuroda <t-kuroda@oiax.jp>.
+Copyright (c) 2011-2012 Tsutomu Kuroda <t-kuroda@oiax.jp>.
