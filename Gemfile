@@ -7,13 +7,13 @@ if rails_version == "edge"
 elsif rails_version && rails_version.strip != ""
   gem "rails", rails_version
 else
-  gem "rails", ">= 3.2.6"
+  gem "rails", ">= 3.2.8"
 end
 
 gem "bcrypt-ruby", "~> 3.0.1"
 
 group :test do
-  gem "rspec-rails", "~> 2.11.0"
-  gem "sqlite3", "~> 1.3.4"
-  gem "database_cleaner", "~> 0.7.0"
+  gem "rspec-rails", "~> 2.11.4"
+  gem "sqlite3", "~> 1.3.6"
+  gem "database_cleaner", "~> 0.9.1"
 end
