@@ -27,6 +27,11 @@ class CreateAllTables < ActiveRecord::Migration
       t.string :password_digest
       t.boolean :deleted
     end
+
+    create_table(:emails) do |t|
+      t.string :address
+      t.string :confirmation_token
+    end
   end
 end
 
@@ -38,8 +43,9 @@ migration.change
 # Models
 class User < ActiveRecord::Base
   include MiniAuth
+  include MiniAuth::RandomToken
   
-  token :auto_login, :mail_confirmation
+  token :auto_login
 end
 
 class Member < ActiveRecord::Base
@@ -50,4 +56,10 @@ end
 class Administrator < ActiveRecord::Base
   include MiniAuth
   attr_protected :deleted
+end
+
+class Email < ActiveRecord::Base
+  include MiniAuth::RandomToken
+
+  token :confirmation
 end

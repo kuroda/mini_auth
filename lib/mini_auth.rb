@@ -1,4 +1,5 @@
 require "mini_auth/version"
+require "mini_auth/random_token"
 require "bcrypt"
 
 module MiniAuth
@@ -64,22 +65,6 @@ module MiniAuth
   end
   
   module ClassMethods
-    def token(*names)
-      names.each do |name|
-        self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
-          def generate_#{name}_token
-            send("#{name}_token=", SecureRandom.hex)
-          end
-        METHOD
-        
-        self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
-          def verify_#{name}_token(token)
-            token && token == self.send("#{name}_token")
-          end
-        METHOD
-      end
-    end
-
     def attributes_protected_by_default
       super + [ 'password_digest', 'changing_password', 'setting_password' ]
     end
