@@ -1,3 +1,6 @@
+## 1.0.0.rc1 (2012-11-26)
+* Extract RandomToken module from MiniAuth module.
+
 ## 0.3.2 (2012-11-08)
 * Don't protect all columns from mass assignment by default.
 

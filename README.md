@@ -236,12 +236,12 @@ For more information about mass assignment security, please refer to the
 
 ### Random token
 
-`MiniAuth` module provides an easy way to generate a random token and verify it. 
+`MiniAuth::RandomToken` module provides an easy way to generate a random token and verify it.
 
 The class method `token` takes a list of names and defines "generate\_#{name}\_token" and "verify\_#{name}\_token" methods dynamically.
 
     class User < ActiveRecord::Base
-      include MiniAuth
+      include MiniAuth::RandomToken
       
       attr_accessible :name, :address, :phone
       token :auto_login, :mail_confirmation
